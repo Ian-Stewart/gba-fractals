@@ -53,8 +53,10 @@
             "includePath": [
                 "${workspaceFolder}",
                 "${workspaceFolder}/include",
-                "E:/devkitPro/devkitARM/arm-none-eabi/include",
-                "E:/devkitPro/devkitARM/lib/gcc/arm-none-eabi/8.1.0/include"
+                "C:/devkitpro/libgba/include",
+                "C:/devkitPro/devkitARM/arm-none-eabi/include",
+                "C:/devkitPro/devkitARM/lib/gcc/arm-none-eabi/11.1.0/include",
+                "${workspaceFolder}/resources"
             ],
             "defines": [
                 "_DEBUG",
@@ -68,8 +70,9 @@
                 "path": [
                     "${workspaceFolder}",
                     "${workspaceFolder}/include",
-                    "E:/devkitPro/devkitARM/arm-none-eabi/include",
-                    "E:/devkitPro/devkitARM/lib/gcc/arm-none-eabi/8.1.0/include"
+                    "C:/devkitpro/libgba/include",
+                    "C:/devkitPro/devkitARM/arm-none-eabi/include",
+                    "C:/devkitPro/devkitARM/lib/gcc/arm-none-eabi/11.1.0/include"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""

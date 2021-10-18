@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "math.h": "c",
+        "cmath": "c",
+        "polynomials.h": "c",
+        "cstdlib": "cpp",
+        "*.tcc": "cpp",
+        "limits.h": "c"
+    }
+}
