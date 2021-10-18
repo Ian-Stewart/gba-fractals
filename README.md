@@ -5,7 +5,7 @@ A homebrew gameboy game which renders Newton's Fractal, as inspired by [this 3Bl
 ## Dependencies
 
 To get this project to compile there are some dependancies that need to be taken into consideration.
-Obviously you will need a GBA emulator set up on your sytem, I tend to flip flop between using NO$GBA or lately mGBA. At the minute I use mGBA as it hooks up nicely with gdb debugging. Which I've configured this VS Code set up to make use of, so get a copy of [mGBA](https://mgba.io/downloads.html) (I'm using Version 0.6.2 as version after this at the time of release weren't working correctly with GDB).
+Obviously you will need a GBA emulator set up on your sytem, I tend to flip flop between using NO$GBA or lately mGBA. At the minute I use mGBA as it hooks up nicely with gdb debugging. Which I've configured this VS Code set up to make use of, so get a copy of [mGBA](https://mgba.io/downloads.html) (I'm using Version 0.9.2 - GDB seems to work fine, but if you have issues 0.6.2 was mentioned as working).
 
 ### devkitPro
 

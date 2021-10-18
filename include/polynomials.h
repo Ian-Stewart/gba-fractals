@@ -28,5 +28,6 @@ extern Complex value_imaginary(Polynomial* p, Complex* complex);
 extern double int_power(double base, u8 exponent);
 extern Complex int_power_imaginary(Polynomial* p, Complex* base, u8 exponent);
 extern Complex division(Complex* numerator, Complex* denominator);
+extern Complex multiply(Complex* c1, Complex* c2);
 
 #endif

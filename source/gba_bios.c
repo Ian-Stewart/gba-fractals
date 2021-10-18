@@ -27,4 +27,3 @@ void register_vblank_isr()
 	REG_IE |= INT_VBLANK;
 	REG_IME = 0x01;
 }
-

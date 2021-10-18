@@ -1,4 +1,5 @@
 #include "polynomials.h"
+#include <math.h>
 
 double int_power(double base, u8 exponent) {
     double power = 1;
@@ -36,5 +37,23 @@ void derivative(Polynomial* p, Polynomial* d) {
 }
 
 Complex division(Complex* numerator, Complex* denominator) {
-    // TODO
+    Complex temporary;
+    // Set as conjugate of denominator
+    temporary.real = denominator->real;
+    temporary.imaginary = -denominator->imaginary;
+    Complex temporaryNumerator = multiply(numerator, &temporary);
+    Complex temporaryDenominator = multiply(denominator, &temporary);
+
+    // Set to restult, conjugate is not needed
+    temporary.real = temporaryNumerator.real/temporaryDenominator.real;
+    temporary.imaginary = temporaryNumerator.imaginary/temporaryDenominator.real;
+    return temporary; 
+}
+
+Complex multiply(Complex* c1, Complex* c2) {
+    Complex result;
+    // (x+yi)(u+vi) = (xu - yv) + (xv+yu)i
+    result.real = (c1->real * c2->real) - (c1->imaginary * c2->imaginary);
+    result.imaginary = (c1->real * c2->imaginary) + (c1->imaginary * c2->real);
+    return result;
 }
