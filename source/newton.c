@@ -15,8 +15,8 @@ void newton(Polynomial* polynomial, Polynomial* derivative, Complex* complex, u8
 }
 
 u16 nearestRoot(Roots* roots, Complex* complex, Polynomial* p) {
-    double smallestDistance = 1000.0;
-    double dist = 0.0;
+    float smallestDistance = 1000.0;
+    float dist = 0.0;
     u16 color;
     for (int i = 0; i < p->degree; i++) {
         dist = distance(complex, &roots->root[i]);
@@ -28,8 +28,8 @@ u16 nearestRoot(Roots* roots, Complex* complex, Polynomial* p) {
     return color;
 }
 
-double distance(Complex* c1, Complex* c2) {
-    double a_sq = int_power((c1->real - c2->real), 2);
-    double b_sq = int_power((c1->imaginary - c2->imaginary), 2);
+float distance(Complex* c1, Complex* c2) {
+    float a_sq = int_power((c1->real - c2->real), 2);
+    float b_sq = int_power((c1->imaginary - c2->imaginary), 2);
     return sqrt(a_sq + b_sq);
 }

@@ -14,6 +14,6 @@ typedef struct Roots{
 
 extern void newton(Polynomial* polynomial, Polynomial* derivative, Complex* complex, u8 iterations);
 extern u16 nearestRoot(Roots* roots, Complex* complex, Polynomial* p);
-extern double distance(Complex* c1, Complex* c2);
+extern float distance(Complex* c1, Complex* c2);
 
 #endif
