@@ -9,8 +9,14 @@ double int_power(double base, u8 exponent) {
     return power;
 }
 
-Complex int_power_imaginary(Polynomial* p, Complex* base, u8 exponent) {
-    // TODO
+Complex int_power_imaginary(Complex* base, u8 exponent) {
+     Complex power;
+     power.real = 1;
+     power.imaginary = 0;
+     for (int i = 0; i < exponent; i++) {
+         power = multiply(base, &power);
+     }
+     return power;
 }
 
 double value(Polynomial* p, double x) {
@@ -23,8 +29,13 @@ double value(Polynomial* p, double x) {
 }
 
 Complex value_imaginary(Polynomial* p, Complex* complex) {
+    Complex value;
+    value.real = 0;
+    value.imaginary = 0;
     for (int i = 0; i <= p->degree; i++) {
-        // TODO
+        Complex power = int_power_imaginary(complex, i);
+        value.real += p->coefficients[i] * power.real;
+        value.imaginary += p->coefficients[i] * power.imaginary;
     }
     return value;
 }
