@@ -33,13 +33,19 @@ void test() {
 	degree_five.degree = 5;
 	degree_four.degree = 4;
 
-	double coefficients[6];
+	float coefficients[6];
 	coefficients[5] = 1.5;
 	coefficients[4] = -2.0;
 	coefficients[3] = 3.0;
 	coefficients[2] = -2.0;
 	coefficients[1] = 1.0;
 	coefficients[0] = 0.5;
+	degree_five.coefficients = coefficients;
+	derivative(&degree_five, &degree_four);
+
+	Polynomial degree_two;
+	degree_two.degree = 2;
+	degree_two.coefficients = &coefficients[3];
 
 	Roots roots;
 	Complex complex_roots[5];
@@ -62,6 +68,10 @@ void test() {
 
 	complex_roots[5].real = -0.274183;
 	complex_roots[5].imaginary = 0.0;
+
+	Complex result_of_value = value_imaginary(&degree_five, complex_roots);
+
+	float test = 0.0;
 }
 
 int main()

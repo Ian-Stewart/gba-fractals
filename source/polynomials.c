@@ -1,8 +1,8 @@
 #include "polynomials.h"
 #include <math.h>
 
-double int_power(double base, u8 exponent) {
-    double power = 1;
+float int_power(float base, u8 exponent) {
+    float power = 1;
     for (int i = 0; i < exponent; i++) {
         power *= base;
     }
@@ -19,10 +19,10 @@ Complex int_power_imaginary(Complex* base, u8 exponent) {
      return power;
 }
 
-double value(Polynomial* p, double x) {
-    double value = 0;
+float value(Polynomial* p, float x) {
+    float value = 0;
     for (int i = 0; i <= p->degree; i++) {
-        double power = int_power(x, i);
+        float power = int_power(x, i);
         value += p->coefficients[i] * power;
     }
     return value;

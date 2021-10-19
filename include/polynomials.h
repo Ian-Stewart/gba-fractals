@@ -12,18 +12,18 @@
  **/
 typedef struct Polynomial {
     u8 degree;
-    double* coefficients;
+    float* coefficients;
 }Polynomial;
 
 typedef struct Complex {
-    double real;
-    double imaginary;
+    float real;
+    float imaginary;
 }Complex;
 
 extern void derivative(Polynomial* p, Polynomial* d);
 
-extern double value(Polynomial* p, double x);
-extern double int_power(double base, u8 exponent);
+extern float value(Polynomial* p, float x);
+extern float int_power(float base, u8 exponent);
 
 extern Complex value_imaginary(Polynomial* p, Complex* complex);
 extern Complex int_power_imaginary(Complex* base, u8 exponent);
