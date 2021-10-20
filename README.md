@@ -17,7 +17,7 @@ Obviously you will need a GBA emulator set up on your sytem, mGBA works well and
 You will need to have devkitPro with devkitARM installed, this can easily be carried out by heading over to the [devkitPro Installer page](https://github.com/devkitPro/installer/releases) and getting the most current version for your development platform.
 Try to avoid installing devkitPro to a directory or sub directory with long path names. I installed them to the root of my C drive, because I'm lazy.
 
-After installing it, you need to **add "%DEVKITPRO%\tools\bin" to the Path**. The installation seems to no make this and is necessary for the debugger to work correctly.
+After installing it, you need to **add "%DEVKITPRO%\tools\bin" to the Path**. The installation seems to not make this and is necessary for the debugger to work correctly.
 Once devKitPro has done it's thing you can move on to getting VS Code set up.
 
 ### VS Code Extensions
