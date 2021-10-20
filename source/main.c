@@ -111,5 +111,6 @@ void configureMath() {
 
 void zoomIn() {
 	width /= 2.0;
+	iterations++;
 	// TODO track towards interesting stuff
 }
