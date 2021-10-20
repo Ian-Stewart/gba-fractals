@@ -38,7 +38,7 @@ int main() {
 
 	//Fill buffers with black
 	memset(vid_page_front, 0x0404, SCREEN_W * SCREEN_H);
-	//memset(vid_page_back, 0x0404, SCREEN_W * SCREEN_H);
+	memset(vid_page_back, 0x0404, SCREEN_W * SCREEN_H);
 	
 	//set GBA rendering context to MODE 3 Bitmap Rendering
 	REG_DISPCNT = VIDEOMODE_4 | BGMODE_2;
@@ -103,8 +103,8 @@ void configureMath() {
 
 	colors[0] = 0x0202;
 	colors[1] = 0x0400;
-	colors[2] = 0x0404;
-	colors[3] = 0x0303;
+	colors[2] = 0x0204;
+	colors[3] = 0x0300;
 	colors[4] = 0x0002;
 
 	roots.colors = colors;

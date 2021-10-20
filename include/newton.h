@@ -6,8 +6,8 @@
 #include "gba_drawing.h"
 #include "gba_mathUtil.h"
 
-#define MAX_ITERATIONS 12
-#define TOTAL_ITERATIONS_PER_FRAME 64
+#define MAX_ITERATIONS 16
+#define TOTAL_ITERATIONS_PER_FRAME 1024
 
 // Size of roots is given by degree of polynomial
 // FUNDAMENTAL THEOREM OF ALGEBGRA, BAYBEE
