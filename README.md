@@ -5,6 +5,8 @@ Also this readme isn't fully updated yet, which you can probably gather from *wa
 
 The neat stuff is in [main.c](https://github.com/Ian-Stewart/fractals/blob/master/source/main.c), [newton.c](https://github.com/Ian-Stewart/fractals/blob/master/source/newton.c), and [fractals.c](https://github.com/Ian-Stewart/fractals/blob/master/source/polynomials.c)
 
+![alt text](https://github.com/Ian-Stewart/fractals/blob/master/images/demo.png "Hey would ya look at that, math")
+
 ## Dependencies
 
 To get this project to compile there are some dependancies that need to be taken into consideration.
@@ -40,5 +42,3 @@ Once all of the above changes have been squared away you should be able to make 
 You should then be presented with a debug view, where you can navigate through the code line by line and track individual values and memory addresses.
 
 Click on the video to view a youtube video going through this GitHub repo. 
-
-[![alt text](https://github.com/JamieDStewart/GBA_VSCode_Basic/blob/master/images/running.PNG "Proof it works!")](https://youtu.be/Rj0lf46iljc "Video Guide")
