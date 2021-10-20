@@ -1,6 +1,9 @@
-# GBA_VSCode_Basic
+# GBA Fractals Demo
 A homebrew gameboy game which renders Newton's Fractal, as inspired by [this 3Blue1Brown video](https://www.youtube.com/watch?v=-RdOwhmqP5s). Makefile, big chunks of this readme, and other project infrastrucutre lovingly copied from [Jamie Stewart's VSCode Sample Project](https://github.com/JamieDStewart/GBA_VSCode_Basic), which you should probably at least skim if you're actually going to try to build this locally :)
 
+Also this readme isn't fully updated yet, which you can probably gather from *waves hands* all of this
+
+The neat stuff is in [main.c](https://github.com/Ian-Stewart/fractals/blob/master/source/main.c), [newton.c](https://github.com/Ian-Stewart/fractals/blob/master/source/newton.c), and [fractals.c](https://github.com/Ian-Stewart/fractals/blob/master/source/polynomials.c)
 
 ## Dependencies
 
@@ -10,7 +13,8 @@ Obviously you will need a GBA emulator set up on your sytem, I tend to flip flop
 ### devkitPro
 
 You will need to have devkitPro with devkitARM installed, this can easily be carried out by heading over to the [devkitPro Installer page](https://github.com/devkitPro/installer/releases) and getting the most current version for your development platform.
-Try to avoid installing devkitPro to a directory or sub directory with long path names. I tend to install devkitPro to the root of my data drive.
+Try to avoid installing devkitPro to a directory or sub directory with long path names. I installed them to the root of my C drive, because I'm an idiot. 
+
 After installing it, you need to **add "%DEVKITPRO%\tools\bin" to the Path**. The installation seems to no make this and is necessary for the debugger to work correctly.
 Once devKitPro has done it's thing you can move on to getting VS Code set up.
 
