@@ -17,10 +17,15 @@ void newton(Polynomial* polynomial, Polynomial* derivative, Complex* complex, u8
     // To estimate: z2 = z1 - (P(z1)/P'(z1))
     Complex numerator;
     Complex denominator;
+    Complex scratch;
+    scratch.imaginary = 0;
+    scratch.real = 0;
     while (iterations > 0) {
         numerator = value_imaginary(polynomial, complex);
         denominator = value_imaginary(derivative, complex);
-        *complex = division(&numerator, &denominator);
+        scratch = division(&numerator, &denominator);
+        complex->real -= scratch.real;
+        complex->imaginary -= scratch.imaginary;
         iterations--;
     }
 }
