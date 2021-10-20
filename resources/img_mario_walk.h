@@ -1,4 +1,3 @@
-
 //{{BLOCK(img_mario_walk_1)
 
 //======================================================================
@@ -18,10 +17,10 @@
 #define GRIT_IMG_MARIO_WALK_1_H
 
 #define img_mario_walk_1BitmapLen 6480
-extern const unsigned short img_mario_walk_1Bitmap[3240];
+extern const unsigned short bitmap[3240];
 
 #define img_mario_walk_1PalLen 32
-extern const unsigned short img_mario_walk_1Pal[16];
+extern const unsigned short pallette[16];
 
 #endif // GRIT_IMG_MARIO_WALK_1_H
 

@@ -24,3 +24,7 @@ s32 sign(s32 a_val)
 {
 	return (!(a_val & 0x80000000) && !a_val) ? 1 : -1;
 }
+
+// float sqrt(float a_val) {
+	
+// }

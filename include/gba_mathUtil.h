@@ -9,4 +9,6 @@ extern s32 gba_rand();
 extern s32 gba_rand_range(s32 a_min, s32 a_max);
 extern s32 sign(s32 a_val);
 
+// extern float sqrt(float a_val);
+
 #endif //__GBA_MATHUTIL_H__

@@ -7,33 +7,73 @@
 #include "gba_input.h"
 #include "polynomials.h"
 #include "newton.h"
-
-//include the header file for the bitmap image
-#include "img_mario_walk_1.h"
-#include "img_mario_walk_2.h"
-#include "img_mario_walk_3.h"
+#include "img_mario_walk.h"
 
 #include <string.h>
 
 void copyBitmapToPageLocation( u16* a_vidPage, const u16* bitmap, s16 w, s16 h, s16 x, s16 y);
+void configureMath();
+u16* page_flip();
 
 u16* vid_page = vid_page_back;
 
-u16* page_flip()
-{
-	vid_page = (u16*)((u32)vid_page ^ VRAM_PAGE_SIZE);
-	REG_DISPCNT ^= VIDEO_PAGE;	// update control register	
-	return vid_page;
+// Math things
+Polynomial degree_five;
+Polynomial degree_four;
+float coefficients[6];
+float derivative_coefficients[5];
+Roots roots;
+Complex complex_roots[5];
+u16 colors[5];
+
+u16 lastUpdatedPixel = 0;
+u8 iterations = 8;
+
+int main() {
+	register_vblank_isr();
+
+	configureMath();
+
+	memcpy(MEM_PALETTE, pallette, 16);
+
+	//Fill buffers with black
+	memset(vid_page_front, 0x0404, SCREEN_W * SCREEN_H);
+	//memset(vid_page_back, 0x0404, SCREEN_W * SCREEN_H);
+	
+	//set GBA rendering context to MODE 3 Bitmap Rendering
+	REG_DISPCNT = VIDEOMODE_4 | BGMODE_2;
+
+	while (1) { //loop forever
+		vblank_intr_wait();
+		updateFractalsForFrame();
+		//page_flip();
+	}
+	
+	return 0;
 }
 
-void test() {
-	Polynomial degree_five;
-	Polynomial degree_four;
+void updateFractalsForFrame() {
+	if (iterations > MAX_ITERATIONS) {
+		return;
+	}
+ 	// As iterations deepen, do fewer pixels per frame
+	for (u8 i = 0; (i * iterations) < TOTAL_ITERATIONS_PER_FRAME; i++) {
+		if (lastUpdatedPixel >= SCREEN_W * SCREEN_H) {
+			lastUpdatedPixel = 0;
+			iterations += 1;
+		} else {
+			Complex valueToEstimate = findComplexForPixel(lastUpdatedPixel +1);
+			newton(&degree_five, &degree_four, &valueToEstimate, iterations);
+			vid_page_front[lastUpdatedPixel + 1] = nearestRoot(&roots, &valueToEstimate, &degree_five);
+			lastUpdatedPixel++;
+		}
+	}
+}
 
+void configureMath() {
 	degree_five.degree = 5;
 	degree_four.degree = 4;
 
-	float coefficients[6];
 	coefficients[5] = 1.5;
 	coefficients[4] = -2.0;
 	coefficients[3] = 3.0;
@@ -41,15 +81,7 @@ void test() {
 	coefficients[1] = 1.0;
 	coefficients[0] = 0.5;
 	degree_five.coefficients = coefficients;
-	derivative(&degree_five, &degree_four);
-
-	Polynomial degree_two;
-	degree_two.degree = 2;
-	degree_two.coefficients = &coefficients[3];
-
-	Roots roots;
-	Complex complex_roots[5];
-	u16 colors[5];
+	degree_four.coefficients = derivative_coefficients;
 
 	complex_roots[0].real = -0.274183;
 	complex_roots[0].imaginary = 0.0;
@@ -69,76 +101,20 @@ void test() {
 	complex_roots[5].real = -0.274183;
 	complex_roots[5].imaginary = 0.0;
 
-	Complex result_of_value = value_imaginary(&degree_five, complex_roots);
+	colors[0] = 0x0202;
+	colors[1] = 0x0400;
+	colors[2] = 0x0404;
+	colors[3] = 0x0303;
+	colors[4] = 0x0002;
 
-	float test = 0.0;
+	roots.colors = colors;
+	roots.root = complex_roots;
+	
+	derivative(&degree_five, &degree_four);
 }
 
-int main()
-{
-
-	register_vblank_isr();
-	//Mario bitmap image sizes
-	s8 marioH = 90;
-	s8 marioW = 70;
-
-	//copy colour palette into memory
-	memcpy(MEM_PALETTE, img_mario_walk_1Pal, img_mario_walk_1PalLen);
-	//set background memory to palette colour 1. Fill screen with white.
-	memset(vid_page_front, img_mario_walk_1Bitmap[0], SCREEN_W * SCREEN_H);
-	memset(vid_page_back, img_mario_walk_1Bitmap[0], SCREEN_W * SCREEN_H);
-	
-	//set GBA rendering context to MODE 3 Bitmap Rendering
-	REG_DISPCNT = VIDEOMODE_4 | BGMODE_2;
-
-	copyBitmapToPageLocation( vid_page_front, img_mario_walk_1Bitmap, marioW, marioH, 10, 10);
-	copyBitmapToPageLocation( vid_page_back, img_mario_walk_2Bitmap, marioW, marioH, 10, 10);
-	s8 keyFrame = 0;
-
-	test();
-
-	while (1) { //loop forever
-		vblank_intr_wait();
-
-		PollKeys();
-
-		if( keyReleased(A) )
-		{
-			++keyFrame;
-			keyFrame = keyFrame & 0x3;
-			switch (keyFrame)
-			{
-				case 1:
-				{
-					copyBitmapToPageLocation( vid_page_back, img_mario_walk_2Bitmap, marioW, marioH, 10, 10);
-					break;
-				}
-				case 3:
-				{
-					copyBitmapToPageLocation( vid_page_back, img_mario_walk_3Bitmap, marioW, marioH, 10, 10);
-					break;
-				}
-				
-				default:
-					break;
-			}
-			page_flip();
-		}
-		
-	}
-	
-	return 0;
-}
-//Function to copy bitmap data to screen based on width and height
-void copyBitmapToPageLocation( u16* a_vidPage, const u16* bitmap, s16 w, s16 h, s16 x, s16 y)
-{
-	u16 screenLocation = 0;
-	u16 bitmapLocation = 0;
-	for( s16 i = 0; i < h; ++i )
-	{
-		screenLocation =  (y + i) * 120 + x; 
-		bitmapLocation = (i * w>>1)+i;
-
-		memcpy( &a_vidPage[screenLocation], &bitmap[bitmapLocation], w);
-	}
+u16* page_flip() {
+	vid_page = (u16*)((u32)vid_page ^ VRAM_PAGE_SIZE);
+	REG_DISPCNT ^= VIDEO_PAGE;	// update control register	
+	return vid_page;
 }

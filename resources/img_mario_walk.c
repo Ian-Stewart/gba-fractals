@@ -1,4 +1,4 @@
-
+#include "img_mario_walk.h"
 //{{BLOCK(img_mario_walk_1)
 
 //======================================================================
@@ -14,7 +14,7 @@
 //
 //======================================================================
 
-const unsigned short img_mario_walk_1Bitmap[3240] __attribute__((aligned(4)))=
+const unsigned short bitmap[3240] __attribute__((aligned(4)))=
 {
 	0x0404,0x0404,0x0404,0x0404,0x0404,0x0404,0x0404,0x0404,
 	0x0404,0x0404,0x0404,0x0404,0x0404,0x0404,0x0404,0x0404,
@@ -473,7 +473,7 @@ const unsigned short img_mario_walk_1Bitmap[3240] __attribute__((aligned(4)))=
 	0x0404,0x0404,0x0404,0x0404,0x0404,0x0404,0x0404,0x0000,
 };
 
-const unsigned short img_mario_walk_1Pal[16] __attribute__((aligned(4)))=
+const unsigned short pallette[16] __attribute__((aligned(4)))=
 {
 	0x0000,0x73BB,0x0CDF,0x5B1F,0x73DE,0x633F,0x0000,0x0000,
 	0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,
