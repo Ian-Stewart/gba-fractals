@@ -1,11 +1,15 @@
 #include "newton.h"
 
-Complex findComplexForPixel(u16 px) {
-    float fractionAccross = (float)(px % SCREEN_W)/SCREEN_W;
-    float fractionDown = (float)(px / SCREEN_W)/SCREEN_H;
+Complex findComplexForPixel(u16 px, Complex* center, float width) {
+    u16 accross = (px % SCREEN_W);
+    u16 down = (px / SCREEN_W);
+    float fractionAccross = (float)accross/SCREEN_W;
+    float fractionDown = (float)down/SCREEN_H;
     Complex value;
-    value.real = -1.0 + (fractionAccross * 2.0);
-    value.imaginary = 1.0 - (fractionDown * 2.0);
+    value.real = -(1.2) + (fractionAccross * 2.4);
+    value.imaginary = 0.8 - (fractionDown * 1.6);
+    value.real *= width;
+    value.imaginary *= width;
     return value;
 }
 
@@ -22,9 +26,9 @@ void newton(Polynomial* polynomial, Polynomial* derivative, Complex* complex, u8
 }
 
 u16 nearestRoot(Roots* roots, Complex* complex, Polynomial* p) {
-    float smallestDistance = 1000.0;
+    float smallestDistance = 1000000.0;
     float dist = 0.0;
-    u16 color;
+    u16 color = roots->colors[p->degree];
     for (int i = 0; i < p->degree; i++) {
         dist = distance(complex, &roots->root[i]);
         if (dist < smallestDistance) {

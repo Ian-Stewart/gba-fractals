@@ -7,7 +7,7 @@
 #include "gba_mathUtil.h"
 
 #define MAX_ITERATIONS 16
-#define TOTAL_ITERATIONS_PER_FRAME 1024
+#define TOTAL_ITERATIONS_PER_FRAME 128
 
 // Size of roots is given by degree of polynomial
 // FUNDAMENTAL THEOREM OF ALGEBGRA, BAYBEE
@@ -20,6 +20,6 @@ typedef struct Roots{
 extern void newton(Polynomial* polynomial, Polynomial* derivative, Complex* complex, u8 iterations);
 extern u16 nearestRoot(Roots* roots, Complex* complex, Polynomial* p);
 extern float distance(Complex* c1, Complex* c2);
-extern Complex findComplexForPixel(u16 px);
+extern Complex findComplexForPixel(u16 px, Complex* center, float width);
 
 #endif
