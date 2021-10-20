@@ -1,5 +1,4 @@
 #include "polynomials.h"
-#include <math.h>
 
 float int_power(float base, u8 exponent) {
     float power = 1;
